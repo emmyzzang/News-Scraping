@@ -1,0 +1,19 @@
+{
+  "name": "nyt-scrape",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/masteremmy/NYT-Scrape.git"
+  },
+  "author": "masteremmy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/masteremmy/NYT-Scrape/issues"
+  },
+  "homepage": "https://github.com/masteremmy/NYT-Scrape#readme"
+}
