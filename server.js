@@ -44,3 +44,19 @@ const db = mongoose.connection;
 
 // ROUTES
 // ==============================================
+
+// Default endpoint
+app.get('/', function(req, res) {
+  res.send(index.html);
+});
+
+// TODO -
+
+// GET for scraping
+// Do something to data
+// POST request
+// Do something to data
+
+app.listen(3000, function() {
+  console.log('Server insomnia activities on port 3000');
+});
