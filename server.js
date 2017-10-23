@@ -39,4 +39,8 @@ if (process.env.MONGODB_URI) {
 else {
   mongoose.connect(databaseuri);
 }
-// ======================= end database configuration =======================
+
+const db = mongoose.connection;
+
+// ROUTES
+// ==============================================
