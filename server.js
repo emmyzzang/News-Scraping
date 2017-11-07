@@ -56,12 +56,12 @@ app.get('/scrape', function(req, res) {
   request('https://www.nytimes.com/', function (error, response, html) {
 
   // HTML gets loaded into cheerio and stored in $ so we can use it
-  let $ = cheerio.load(html);
+  const $ = cheerio.load(html);
 
   // Grab every element with an a tag
   $('a h3').each(function(i, element) {
 
-  let result [];
+  let result = {};
 
     result.title = $(this).children('a').text();
     result.link = $(this).children('a').attr('href');
