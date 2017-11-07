@@ -50,9 +50,9 @@ app.get('/', function(req, res) {
   res.send(index.html);
 });
 
-// GET to retrieve data from site
+// GET: Site -> DB
 app.get('/scrape', function(req, res) {
-  // Donald trump this piece
+  // Grab the body of the request and ask for a call back
   request('https://www.nytimes.com/', function (error, response, html) {
 
   // HTML gets loaded into cheerio and stored in $ so we can use it
@@ -65,7 +65,7 @@ app.get('/scrape', function(req, res) {
 
     result.title = $(this).children('a').text();
     result.link = $(this).children('a').attr('href');
-
+    /// Def entry + save entry to the db
     let entry = new Article(result);
     entry.save(function(error, doc) {
 
@@ -81,6 +81,22 @@ app.get('/scrape', function(req, res) {
   res.send('scrape happened');
 });
 
+// GET DB -> Browser
+app.get('articles', function(req, res) {
+  Article.find({}, function(error, doc) {
+    if (err) {
+      console.log('you do not get articles from the db');
+    }
+    else {
+      console.log('here have articles');
+      res.json(doc);
+    }
+  });
+});
+
+
+
+// TODO - still do this
 // POST request
 // Do something to data
 
