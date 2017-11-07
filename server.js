@@ -50,10 +50,37 @@ app.get('/', function(req, res) {
   res.send(index.html);
 });
 
-// TODO -
+// GET to retrieve data from site
+app.get('/scrape', function(req, res) {
+  // Donald trump this piece
+  request('https://www.nytimes.com/', function (error, response, html) {
 
-// GET for scraping
-// Do something to data
+  // HTML gets loaded into cheerio and stored in $ so we can use it
+  let $ = cheerio.load(html);
+
+  // Grab every element with an a tag
+  $('a h3').each(function(i, element) {
+
+  let result [];
+
+    result.title = $(this).children('a').text();
+    result.link = $(this).children('a').attr('href');
+
+    let entry = new Article(result);
+    entry.save(function(error, doc) {
+
+      if (err) {
+        console.log(err);
+      }
+      else {
+        console.log(doc);
+        }
+      });
+    });
+  });
+  res.send('scrape happened');
+});
+
 // POST request
 // Do something to data
 
